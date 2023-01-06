@@ -149,21 +149,20 @@ namespace TU_Challenge
 
         internal static List<int> Sort(List<int> toSort)
         {
-            List<int> new_List = new List<int>();
-            while(toSort != new_List)
+            int tempo = 0;
+            for (int i = 0; i < toSort.Count - 1; i++)
             {
-                int min = toSort[0];
-                foreach(var x in toSort)
+                for (int j = i + 1; j < toSort.Count; j++)
                 {
-                    if(x < min)
+                    if (toSort[i] > toSort[j])
                     {
-                        min = x;
+                        tempo = toSort[i];
+                        toSort[i] = toSort[j];
+                        toSort[j] = tempo;
                     }
                 }
-                new_List.Append(min);
-                toSort.Remove(min);
             }
-            return new_List;
+            return toSort;
         }
 
         internal static List<int> GenericSort(List<int> toSort, Func<int, int, int> isInOrder)
